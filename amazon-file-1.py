@@ -42,10 +42,12 @@ products = soup.find_all('div', {'data-component-type': 's-search-result'})[:10]
 
 
 product_links = []
+product_prices = []
 # Find the price of the product
 for product in products:
     price = product.find('span', {'class': 'a-offscreen'})
-    print('The price of the product is:', price.text.strip())
+    print('The price of the product is:', price.text)
     product_link = product.find('a', {'class': 'a-link-normal s-no-outline'}).get('href')
     product_link = "https://www.amazon.in" + product_link
     product_links.append(product_link)
+    product_prices.append(price.text[1:]);
